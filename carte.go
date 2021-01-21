@@ -38,7 +38,7 @@ func ScegliCarta(v int) {
 }
 
 func EstraiCarta() carta {
-	estrazione := rand.Intn(52)
+	estrazione := rand.Intn(mazzoN)
 	return mazzo[estrazione]
 }
 
