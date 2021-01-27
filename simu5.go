@@ -5,15 +5,19 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	"unicode"
 )
 
 func main() {
 	numero := os.Args[1]
 	togli := os.Args[2]
 	max := 0
+
 	//found := 0
 	//var err error
 	numstr := strings.Split(string(numero), "")
+	var numstr2 string
+	var numstrX string
 	r, _ := strconv.Atoi(togli)
 	for i := 0; i < r; i++ {
 		fmt.Println("--", r)
@@ -39,5 +43,26 @@ func main() {
 		}
 		max = 0
 	}
-	fmt.Println("numero migliore scritto da cani: ", numstr)
+
+	for f := 0; f < len(numstr); f++ {
+		numstrX += numstr[f]
+	}
+
+	numstrR := []rune(string(numstrX))
+	for i, v := range numstrR {
+		if unicode.IsSpace(v) == false {
+			numstr2 = numstr2 + string(numstrR[i])
+		} else {
+			//fmt.Println("bruh")
+		}
+	}
+	fmt.Println("numero migliore scritto carino: ", numstr2)
 }
+
+/*for i := 0; i < len(numstr); i++ {
+	if numstr[i] == " " {
+		numstr2 = numstr2 + numstr[i]
+	} else {
+		fmt.Println("bruh")
+	}
+}*/
