@@ -1,14 +1,23 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 
 func main() {
-	var n, k int
+	var n, k, x int
 	g := []int{1, 3, 4, 6, 4, 32, 4, 5, 40}
 	fmt.Scan(&n, &k)
 	fmt.Println(Potenza(n, k))
 	fmt.Println(Max(g))
-	Prova2()
+	fmt.Scan(&x)
+	fmt.Println(Taglio(x))
+	for i, v := range Occo(x) {
+		fmt.Println("numero", i, "è apparso", v, "volte")
+	}
+	//fmt.Println(Occo(x))
+	//Prova2()
 }
 
 func Potenza(n, k int) int {
@@ -51,12 +60,30 @@ func Prova2() {
 
 	var a [6]int
 
-	for i, v := range a {
-		v = i
-	}
-
 	for _, v := range a {
 		v *= 2
 	}
 	fmt.Println(a)
+}
+
+func Taglio(n int) int {
+	var convtagliato, convtagliato2 string
+	conv := strconv.Itoa(n)
+	convtagliato = conv[1 : len(conv)-1]
+	convtagliato2 = conv[:1] + conv[len(conv)-1:len(conv)]
+	tagliato, _ := strconv.Atoi(convtagliato)
+	tagliato2, _ := strconv.Atoi(convtagliato2)
+	fmt.Println(tagliato2)
+	return tagliato
+}
+
+func Occo(n int) map[string]int {
+	oc := make(map[string]int)
+	conv := strconv.Itoa(n)
+
+	for _, v := range conv {
+		oc[string(v)]++
+	}
+
+	return oc
 }
